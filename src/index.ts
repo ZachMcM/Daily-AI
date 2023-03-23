@@ -34,7 +34,7 @@ const sendMessage = async () => {
     }
 }
 
-cron.schedule('52 17 * * *', () => {
+cron.schedule('30 6 * * *', () => {
     console.log('Cron Job Running')
     sendMessage()
 })
