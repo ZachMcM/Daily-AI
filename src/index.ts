@@ -11,7 +11,8 @@ const openai = new OpenAIApi(configuration)
 import twilio from 'twilio'
 const client = twilio(process.env.TWILIO_SID, process.env.TWILIO_AUTH_TOKEN)
 
-import cron from 'node-cron'
+import express from 'express'
+const app = express()
 
 const sendMessage = async () => {
     const completion = await openai.createCompletion({
@@ -34,7 +35,11 @@ const sendMessage = async () => {
     }
 }
 
-cron.schedule('0 10 * * *', () => {
-    console.log('Cron Job Running')
+app.get('/', (req, res) => {
     sendMessage()
+    res.send("Message sent")
+})
+
+app.listen(8000 || process.env.PORT, () => {
+    console.log('Server starting')
 })
