@@ -29,15 +29,15 @@ const sendMessage = async () => {
             to: process.env.TO_NUM         
         })
         .then(message => console.log(message.sid))
-        console.log(`Message sent resposne was ${response}`)
+        return response
     } else {
-        console.log('Error sending message')
+        return 'error sending message'
     }
 }
 
-app.get('/', (req, res) => {
-    sendMessage()
-    res.send("Message sent")
+app.get('/', async (req, res) => {
+    const message = await sendMessage()
+    res.json(message)
 })
 
 app.listen(8000 || process.env.PORT, () => {
