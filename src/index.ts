@@ -35,7 +35,7 @@ const sendMessage = async () => {
     }
 }
 
-app.get('/', async (req, res) => {
+app.get('/text', async (req, res) => {
     const message = await sendMessage()
     res.json(message)
 })

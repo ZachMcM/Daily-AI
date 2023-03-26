@@ -43,7 +43,7 @@ const sendMessage = () => __awaiter(void 0, void 0, void 0, function* () {
         return 'error sending message';
     }
 });
-app.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+app.get('/text', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const message = yield sendMessage();
     res.json(message);
 }));
