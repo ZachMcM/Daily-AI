@@ -37,16 +37,16 @@ const sendMessage = () => __awaiter(void 0, void 0, void 0, function* () {
             to: process.env.TO_NUM
         })
             .then(message => console.log(message.sid));
-        console.log(`Message sent resposne was ${response}`);
+        return response;
     }
     else {
-        console.log('Error sending message');
+        return 'error sending message';
     }
 });
-app.get('/', (req, res) => {
-    sendMessage();
-    res.send("Message sent");
-});
+app.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const message = yield sendMessage();
+    res.json(message);
+}));
 app.listen(8000 || process.env.PORT, () => {
     console.log('Server starting');
 });
