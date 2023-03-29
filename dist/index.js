@@ -42,7 +42,7 @@ const sendMessage = () => __awaiter(void 0, void 0, void 0, function* () {
         return 'error sending message';
     }
 });
-node_cron_1.default.schedule('0 10 * * *', () => __awaiter(void 0, void 0, void 0, function* () {
+node_cron_1.default.schedule('30 13 * * *', () => __awaiter(void 0, void 0, void 0, function* () {
     const message = yield sendMessage();
     console.log(message);
 }));
