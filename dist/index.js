@@ -21,7 +21,6 @@ const configuration = new openai_1.Configuration({
 const openai = new openai_1.OpenAIApi(configuration);
 const twilio_1 = __importDefault(require("twilio"));
 const client = (0, twilio_1.default)(process.env.TWILIO_SID, process.env.TWILIO_AUTH_TOKEN);
-const node_cron_1 = __importDefault(require("node-cron"));
 const sendMessage = () => __awaiter(void 0, void 0, void 0, function* () {
     const completion = yield openai.createCompletion({
         model: "text-davinci-003",
@@ -42,7 +41,8 @@ const sendMessage = () => __awaiter(void 0, void 0, void 0, function* () {
         return 'error sending message';
     }
 });
-node_cron_1.default.schedule('30 13 * * *', () => __awaiter(void 0, void 0, void 0, function* () {
-    const message = yield sendMessage();
-    console.log(message);
-}));
+// cron.schedule('30 13 * * *', async () => {
+//     const message = await sendMessage()
+//     console.log(message)
+// })
+sendMessage();
